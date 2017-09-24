@@ -27,3 +27,6 @@ lib-cov
 
 # Vue
 dist/
+
+# IDEs and editors
+/.idea
