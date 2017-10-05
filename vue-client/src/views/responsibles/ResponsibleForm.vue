@@ -61,22 +61,41 @@
   export default {
     data() {
       return {
+        isEdit: this.$route.params.id !== undefined,
         responsible: {
           nome: '',
           cpf: '',
         },
       };
     },
-    methods: {
-      save() {
-        this.$http.post(this.responsible)
-          .then(() => {
-//            console.log(response);
+    created() {
+      if (this.isEdit) {
+        this.$http.get(`http://localhost:3333/responsibles/${this.$route.params.id}`)
+          .then((response) => {
+            this.responsible = response.data;
           })
           .catch((error) => {
             throw new Error(error);
-//            console.log(error);
           });
+      }
+    },
+    methods: {
+      save() {
+        if (this.isEdit) {
+          this.$http.put(`http://localhost:3333/responsibles/${this.$route.params.id}`, this.responsible)
+            .then(() => {
+            })
+            .catch((error) => {
+              throw new Error(error);
+            });
+        } else {
+          this.$http.post('http://localhost:3333/responsibles', this.responsible)
+            .then(() => {
+            })
+            .catch((error) => {
+              throw new Error(error);
+            });
+        }
       },
     },
   };

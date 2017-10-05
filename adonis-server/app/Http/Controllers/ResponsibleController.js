@@ -19,20 +19,30 @@ class ResponsibleController {
   }
 
   * store(request, response) {
-    const responsible = yield this.Responsible.create({})
-    console.log(responsible)
+    const responsible = new this.Responsible(request._body)
+    yield responsible.save()
+    response.created()
   }
 
   * show(request, response) {
+    const responsible = yield this.Responsible.find(request.param('id'))
+    response.json(responsible)
   }
 
   * edit(request, response) {
   }
 
   * update(request, response) {
+    const responsible = yield this.Responsible.find(request.param('id'))
+    responsible.fill(request._body)
+    yield responsible.save()
+    response.noContent()
   }
 
   * destroy(request, response) {
+    const responsible = yield this.Responsible.find(request.param('id'))
+    yield responsible.delete()
+    response.noContent()
   }
 
 }

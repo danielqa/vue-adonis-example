@@ -1,6 +1,5 @@
 <template>
   <div>
-    <img class="logo" src="../assets/logo.png">
     <hello></hello>
     <p>
       Welcome to your Adonis + Vue.js app!
@@ -29,10 +28,3 @@
     },
   };
 </script>
-
-<style>
-  .logo {
-    width: 450px;
-    height: 173px
-  }
-</style>

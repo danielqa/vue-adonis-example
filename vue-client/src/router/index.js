@@ -12,13 +12,13 @@ export default new Router({
       path: '*', component: Home,
     },
     {
-      path: '/responsible', component: ResponsibleList,
+      name: 'responsible-list', path: '/responsible', component: ResponsibleList,
     },
     {
-      path: '/responsible/new', component: ResponsibleForm,
+      name: 'responsible-new', path: '/responsible/new', component: ResponsibleForm,
     },
     {
-      path: '/responsible/:id', component: ResponsibleForm,
+      name: 'responsible-edit', path: '/responsible/:id', component: ResponsibleForm,
     },
   ],
 });

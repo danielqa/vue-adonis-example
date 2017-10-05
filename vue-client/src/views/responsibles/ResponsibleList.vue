@@ -44,12 +44,12 @@
           <td>{{ responsible.cpf }}</td>
           <!--<td>{{ responsible.numeroProcessos }}</td>-->
           <td>
-            <a :href="`/responsible/${responsible.id}`" class="btn btn-primary btn-xs">
+            <router-link :to="{name: 'responsible-edit', params: {id: responsible.id}}" class="btn btn-primary btn-xs">
               <span class="glyphicon glyphicon-pencil"></span> Editar
-            </a>
+            </router-link>
           </td>
           <td>
-            <button class="btn btn-danger btn-xs" type="button" @click="deletar(responsible)">
+            <button class="btn btn-danger btn-xs" type="button" @click="deletar(responsible.id)">
               <span class="glyphicon glyphicon-trash"></span> Excluir
             </button>
           </td>
@@ -87,8 +87,14 @@
             throw new Error(error);
           });
       },
-      deletar(responsible) {
-        console.log(responsible);
+      deletar(id) {
+        this.$http.delete(`http://localhost:3333/responsibles/${id}`)
+          .then((response) => {
+            this.responsibles = response.data;
+          })
+          .catch((error) => {
+            throw new Error(error);
+          });
       },
     },
   };
