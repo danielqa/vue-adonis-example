@@ -1,23 +1,42 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view></router-view>
+  <div>
+    <menu-bar></menu-bar>
+    <section class="hero is-light">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">{{$route.meta.title}}</h1>
+        </div>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <router-view></router-view>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <p>
+            <strong>App</strong> by <a href="http://github.com/danielqa">Daniel Queiroz</a>. The source code is licensed
+            <a href="http://opensource.org/licenses/mit-license.php">MIT</a>.
+          </p>
+          <p>
+            <a class="icon" href="https://github.com/danielqa">
+              <b-icon pack="fa" icon="github"></b-icon>
+            </a>
+          </p>
+        </div>
+      </div>
+    </footer>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'app',
-};
-</script>
+  import MenuBar from './components/layout/Menu';
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  export default {
+    components: {
+      MenuBar,
+    },
+  };
+</script>

@@ -1,23 +1,25 @@
 <template>
   <form name="form" @submit.prevent="save()">
-    <div class="row">
-      <div class="form-group col-md-6">
-        <label>Nome</label>
-        <input type="text" class="form-control" v-model="responsible.nome" maxlength="150"/>
+
+    <b-field label="Nome">
+      <b-input v-model="responsible.nome" maxlength="150"></b-input>
+    </b-field>
+
+    <b-field label="Cpf">
+      <b-input v-model="responsible.cpf"></b-input>
+    </b-field>
+
+    <b-field grouped>
+      <div class="control">
+        <button class="button is-primary" type="submit">Salvar</button>
       </div>
 
-      <div class="form-group col-md-4">
-        <label>Cpf</label>
-        <input type="text" class="form-control" v-model="responsible.cpf"/>
+      <div class="control">
+        <router-link :to="{name: 'responsible-list'}" class="button is-danger">
+          Cancelar
+        </router-link>
       </div>
-
-      <div class="form-group">
-        <label>&nbsp;</label>
-        <div class="col-md-2">
-          <button class="btn btn-primary col-md-12" type="submit">Salvar</button>
-        </div>
-      </div>
-    </div>
+    </b-field>
 
     <!--<fieldset v-if="isEdit">
       <legend>Processos que é responsável</legend>

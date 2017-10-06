@@ -1,32 +1,24 @@
 <template>
   <div>
-    <fieldset>
-      <legend>Filtros</legend>
+    <b-field grouped>
+      <b-field label="Responsável" expanded>
+        <b-input v-model="filtro.nome" maxlength="150"></b-input>
+      </b-field>
 
-      <div class="row">
-        <div class="form-group col-md-4">
-          <label>Responsável</label>
-          <input type="text" class="form-control" v-model="filtro.nome" maxlength="150"/>
-        </div>
+      <b-field label="Cpf" expanded>
+        <b-input v-model="filtro.cpf"></b-input>
+      </b-field>
 
-        <div class="form-group col-md-3">
-          <label>Cpf</label>
-          <input type="text" class="form-control" v-model="filtro.cpf"/>
-        </div>
+      <b-field label="Número processo unificado" expanded>
+        <b-field grouped>
+          <b-input v-model="filtro.numeroProcesso" maxlength="20"></b-input>
 
-        <div class="form-group col-md-3">
-          <label>Número processo unificado</label>
-          <input type="text" class="form-control" v-model="filtro.numeroProcesso" maxlength="20"/>
-        </div>
-
-        <div class="form-group">
-          <label>&nbsp;</label>
-          <div class="col-md-2">
-            <button class="btn btn-primary col-md-12" type="button" @click="consultar()">Consultar</button>
+          <div class="control">
+            <button class="button is-primary" type="button" @click="consultar()">Consultar</button>
           </div>
-        </div>
-      </div>
-    </fieldset>
+        </b-field>
+      </b-field>
+    </b-field>
 
     <div class="table-responsive" v-if="responsibles !== undefined">
       <table class="table table-striped">
@@ -43,14 +35,15 @@
           <td>{{ responsible.nome }}</td>
           <td>{{ responsible.cpf }}</td>
           <!--<td>{{ responsible.numeroProcessos }}</td>-->
+          <td></td>
           <td>
-            <router-link :to="{name: 'responsible-edit', params: {id: responsible.id}}" class="btn btn-primary btn-xs">
-              <span class="glyphicon glyphicon-pencil"></span> Editar
+            <router-link :to="{name: 'responsible-edit', params: {id: responsible.id}}" class="button is-info">
+              Editar
             </router-link>
           </td>
           <td>
-            <button class="btn btn-danger btn-xs" type="button" @click="deletar(responsible.id)">
-              <span class="glyphicon glyphicon-trash"></span> Excluir
+            <button class="button is-danger" type="button" @click="deletar(responsible.id)">
+              Excluir
             </button>
           </td>
         </tr>
@@ -74,7 +67,7 @@
           cpf: '',
           numeroProcesso: '',
         },
-        responsibles: [],
+        responsibles: undefined,
       };
     },
     methods: {

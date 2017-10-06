@@ -2,12 +2,6 @@
   <div>
     <hello></hello>
     <p>
-      Welcome to your Adonis + Vue.js app!
-    </p>
-    <p>
-      To get a better understanding of how this boilerplate works, check out <a href="https://github.com/Atinux/vue-adonis" target="_blank">vue-adonis</a> repository.
-    </p>
-    <p>
       You may also want to checkout
       <a href="https://github.com/vuejs/vue-router/" target="_blank">vue-router</a> for routing and
       <a href="https://github.com/vuejs/vuex/" target="_blank">vuex</a> for state management with
