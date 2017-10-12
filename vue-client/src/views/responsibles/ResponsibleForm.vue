@@ -60,6 +60,8 @@
 </template>
 
 <script>
+  import FlashMessage from '../../services/flash-message';
+
   export default {
     data() {
       return {
@@ -75,9 +77,6 @@
         this.$http.get(`http://localhost:3333/responsibles/${this.$route.params.id}`)
           .then((response) => {
             this.responsible = response.data;
-          })
-          .catch((error) => {
-            throw new Error(error);
           });
       }
     },
@@ -86,16 +85,12 @@
         if (this.isEdit) {
           this.$http.put(`http://localhost:3333/responsibles/${this.$route.params.id}`, this.responsible)
             .then(() => {
-            })
-            .catch((error) => {
-              throw new Error(error);
+              FlashMessage.show('success', 'Responsável alterado com sucesso!');
             });
         } else {
           this.$http.post('http://localhost:3333/responsibles', this.responsible)
             .then(() => {
-            })
-            .catch((error) => {
-              throw new Error(error);
+              FlashMessage.show('success', 'Responsável inserido com sucesso!');
             });
         }
       },

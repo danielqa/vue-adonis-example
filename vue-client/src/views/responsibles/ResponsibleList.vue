@@ -75,18 +75,12 @@
         this.$http.get('http://localhost:3333/responsibles')
           .then((response) => {
             this.responsibles = response.data;
-          })
-          .catch((error) => {
-            throw new Error(error);
           });
       },
       deletar(id) {
         this.$http.delete(`http://localhost:3333/responsibles/${id}`)
           .then((response) => {
             this.responsibles = response.data;
-          })
-          .catch((error) => {
-            throw new Error(error);
           });
       },
     },

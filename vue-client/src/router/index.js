@@ -1,12 +1,13 @@
 import Vue from 'vue';
-import Router from 'vue-router';
+import VueRouter from 'vue-router';
+import FlashMessage from '../services/flash-message';
 import Home from '../views/Home';
 import ResponsibleList from '../views/responsibles/ResponsibleList';
 import ResponsibleForm from '../views/responsibles/ResponsibleForm';
 
-Vue.use(Router);
+Vue.use(VueRouter);
 
-export default new Router({
+const router = new VueRouter({
   routes: [
     {
       name: 'home',
@@ -48,3 +49,9 @@ export default new Router({
     },
   ],
 });
+
+router.afterEach(() => {
+  FlashMessage.destroy();
+});
+
+export default router;

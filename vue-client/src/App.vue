@@ -1,6 +1,7 @@
 <template>
   <div>
     <menu-bar></menu-bar>
+    <b-loading :active="HttpRequest.hasPendingRequests()" :canCancel="true"></b-loading>
     <section class="hero is-light">
       <div class="hero-body">
         <div class="container">
@@ -8,6 +9,9 @@
         </div>
       </div>
     </section>
+    <b-notification :active="FlashMessage.hasPendingMessages()" :type="`is-${FlashMessage.type}`" has-icon>
+      <p v-for="message in FlashMessage.messages">{{message}}</p>
+    </b-notification>
     <section class="section">
       <div class="container">
         <router-view></router-view>
@@ -33,10 +37,18 @@
 
 <script>
   import MenuBar from './components/layout/Menu';
+  import HttpRequest from './services/http-request';
+  import FlashMessage from './services/flash-message';
 
   export default {
     components: {
       MenuBar,
+    },
+    data() {
+      return {
+        HttpRequest,
+        FlashMessage,
+      };
     },
   };
 </script>
