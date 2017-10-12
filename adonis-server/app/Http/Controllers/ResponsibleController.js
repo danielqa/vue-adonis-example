@@ -3,10 +3,11 @@
 class ResponsibleController {
 
   static get inject() {
-    return ['App/Model/Responsible']
+    return ['Adonis/Addons/Validator', 'App/Model/Responsible']
   }
 
-  constructor(Responsible) {
+  constructor(Validator, Responsible) {
+    this.Validator = Validator
     this.Responsible = Responsible
   }
 
@@ -20,6 +21,15 @@ class ResponsibleController {
 
   * store(request, response) {
     const responsible = new this.Responsible(request._body)
+    const validation = yield this.Validator.validateAll(responsible, this.Responsible.rules, {
+      'nome.required': 'Campo Nome é obrigatório!',
+      'cpf.required': 'Campo Cpf é obrigatório!',
+      'cpf.unique': 'Cpf já cadastrado!',
+    })
+    if (validation.fails()) {
+      response.preconditionFailed(validation.messages().map(obj => obj.message))
+      return
+    }
     yield responsible.save()
     response.created()
   }

@@ -7,8 +7,8 @@ class ResponsiblesTableSchema extends Schema {
   up() {
     this.create('responsibles', (table) => {
       table.increments()
-      table.string('nome')
-      table.string('cpf')
+      table.string('nome', 50)
+      table.string('cpf', 14)
       table.timestamps()
     })
   }
